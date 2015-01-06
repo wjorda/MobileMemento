@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="16px"
+   height="16px"
+   id="svg12416"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="typebadges.svg">
+  <defs
+     id="defs12418" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="7.9999996"
+     inkscape:cx="-43.877664"
+     inkscape:cy="0.94191004"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="993"
+     inkscape:window-x="0"
+     inkscape:window-y="28"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata12421">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <g
+       id="g3865"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360"
+       inkscape:export-filename="/home/wes/AndroidStudioProjects/MobileMemento/app/src/main/res/drawable-xxhdpi/badge_desktop.png">
+      <path
+         transform="matrix(0.97572757,0,0,0.97572757,20.087912,0.56418322)"
+         d="m -4.1896038,7.6207919 a 8.1990099,8.1990099 0 1 1 -16.3980202,0 8.1990099,8.1990099 0 1 1 16.3980202,0 z"
+         sodipodi:ry="8.1990099"
+         sodipodi:rx="8.1990099"
+         sodipodi:cy="7.6207919"
+         sodipodi:cx="-12.388614"
+         id="path12424"
+         style="fill:#12c700;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         sodipodi:type="arc" />
+      <path
+         style="fill:#ffffff"
+         id="path13066"
+         d="M 12.5,3 H 3.5000002 C 2.9500006,3 2.5000006,3.45 2.5000006,4 V 9.9999998 C 2.5000006,10.55 2.9500006,11 3.5000002,11 h 3.5000002 v 0.999999 H 6.0000008 V 13 H 10.000001 V 11.999999 H 9.0000007 V 11 H 12.5 c 0.55,0 1,-0.45 1,-1.0000002 V 4 c 0,-0.55 -0.45,-1 -1,-1 z m 0,6.9999998 H 3.5000002 V 4 H 12.5 v 5.9999998 z"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       id="g3861"
+       inkscape:export-filename="/home/wes/AndroidStudioProjects/MobileMemento/app/src/main/res/drawable-hdpi/badge_tablet.png"
+       inkscape:export-xdpi="135"
+       inkscape:export-ydpi="135"
+       transform="translate(8.087534,0)">
+      <path
+         sodipodi:type="arc"
+         style="fill:#ffc400;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path12938"
+         sodipodi:cx="-12.388614"
+         sodipodi:cy="7.6207919"
+         sodipodi:rx="8.1990099"
+         sodipodi:ry="8.1990099"
+         d="m -4.1896038,7.6207919 c 0,4.5281881 -3.6708218,8.1990101 -8.1990102,8.1990101 -4.528188,0 -8.19901,-3.670822 -8.19901,-8.1990101 0,-4.5281881 3.670822,-8.19900988 8.19901,-8.19900988 4.5281884,0 8.1990102,3.67082178 8.1990102,8.19900988 z"
+         transform="matrix(0.97572757,0,0,0.97572757,-19.510068,0.56418322)" />
+      <path
+         style="fill:#ffffff"
+         inkscape:connector-curvature="0"
+         d="m -29.09798,3 h -5 c -0.691667,0 -1.25,0.558333 -1.25,1.25 v 7.5 c 0,0.691667 0.558333,1.25 1.25,1.25 h 5 c 0.691667,0 1.25,-0.558333 1.25,-1.25 v -7.5 c 0,-0.691667 -0.558333,-1.25 -1.25,-1.25 z m -1.666667,9.166667 h -1.666666 V 11.75 h 1.666666 v 0.416667 z m 2.1875,-1.25 h -6.041666 V 4.25 h 6.041666 v 6.666667 z"
+         id="path13125" />
+    </g>
+    <g
+       id="g3857"
+       inkscape:export-filename="/home/wes/AndroidStudioProjects/MobileMemento/app/src/main/res/drawable-xxhdpi/badge_phone.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360">
+      <path
+         transform="matrix(0.97572757,0,0,0.97572757,-42.93298,0.56418322)"
+         d="m -4.1896038,7.6207919 a 8.1990099,8.1990099 0 1 1 -16.3980202,0 8.1990099,8.1990099 0 1 1 16.3980202,0 z"
+         sodipodi:ry="8.1990099"
+         sodipodi:rx="8.1990099"
+         sodipodi:cy="7.6207919"
+         sodipodi:cx="-12.388614"
+         id="path12944"
+         style="fill:#ff3d00;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         sodipodi:type="arc" />
+      <path
+         style="fill:#ffffff"
+         id="path13205"
+         d="m -53.20271,3 h -3.636365 c -0.754544,0 -1.363636,0.6090906 -1.363636,1.3636365 v 7.2727275 c 0,0.754545 0.609092,1.363636 1.363636,1.363636 h 3.636365 c 0.754545,0 1.363637,-0.609091 1.363637,-1.363636 V 4.3636365 C -51.839073,3.6090906 -52.448165,3 -53.20271,3 z m -0.909092,9.090909 h -1.818181 v -0.454545 h 1.818181 v 0.454545 z m 1.477274,-1.363636 h -4.772728 V 4.3636365 h 4.772728 v 6.3636365 z"
+         inkscape:connector-curvature="0" />
+    </g>
+    <path
+       style="fill:none"
+       inkscape:connector-curvature="0"
+       d="m -43.783966,18.776695 h 10 v 10 h -10 z"
+       id="path13207" />
+    <g
+       id="g3771"
+       inkscape:export-filename="/home/wes/AndroidStudioProjects/MobileMemento/app/src/main/res/drawable-xxhdpi/badge_unknown.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360">
+      <path
+         sodipodi:type="arc"
+         style="fill:#616161;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path2997"
+         sodipodi:cx="-12.388614"
+         sodipodi:cy="7.6207919"
+         sodipodi:rx="8.1990099"
+         sodipodi:ry="8.1990099"
+         d="m -4.1896038,7.6207919 a 8.1990099,8.1990099 0 1 1 -16.3980202,0 8.1990099,8.1990099 0 1 1 16.3980202,0 z"
+         transform="matrix(0.97572757,0,0,0.97572757,-82.000631,15.678591)" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3767"
+         y="28.114408"
+         x="-97.57534"
+         style="font-size:13.86594486px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Roboto;-inkscape-font-specification:Roboto"
+         xml:space="preserve"><tspan
+           y="28.114408"
+           x="-97.57534"
+           id="tspan3769"
+           sodipodi:role="line">?</tspan></text>
+    </g>
+  </g>
+</svg>

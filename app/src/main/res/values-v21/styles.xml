@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
+        <!--TODO: replace with official color palette colors-->
+        <item name="android:colorPrimary">@color/appPrimary</item>
+        <item name="android:colorPrimaryDark">@color/appPrimaryDark</item>
+        <item name="android:colorAccent">@color/appAccent</item>
+        <item name="android:colorControlActivated">@color/appAccent</item>
+    </style>
+</resources>

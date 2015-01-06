@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="org.mitre.mobilememento.CreateArchiveActivity" >
+    <item android:id="@+id/action_ok"
+        android:title="OK"
+        android:icon="@drawable/ic_check_white_48dp"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"/>
+</menu>
