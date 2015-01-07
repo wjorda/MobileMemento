@@ -3,19 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="org.mitre.mobilememento.CreateArchiveActivity">
 
     <android.support.v7.widget.CardView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        card_view:cardElevation="2dp"
-        card_view:cardCornerRadius="2dp"
         android:layout_margin="8dp"
-        android:layout_weight="0">
+        android:layout_weight="0"
+        card_view:cardCornerRadius="2dp"
+        card_view:cardElevation="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,40 +25,44 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title"
-                android:text="Select Locations to Archive to:"
+                android:gravity="center"
                 android:maxLines="3"
                 android:padding="8dp"
-                android:gravity="center" />
+                android:text="Submit for archiving at:"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title" />
 
-                <LinearLayout
+            <LinearLayout
+                android:id="@+id/linlay_sources_checklist"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:orientation="vertical"
-                    android:id="@+id/linlay_sources_checklist">
-                    <CheckBox
+                android:orientation="vertical">
+
+                <CheckBox
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Subtitle"
-                        android:text="archive.today"/>
-                    <CheckBox
+                    android:text="Archive.today"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Subtitle" />
+
+                <CheckBox
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Subtitle"
-                        android:text="archive.org"/>
-                    <CheckBox
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:enabled="false"
-                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Subtitle"
-                        android:text="WebCite"/>
-                    <CheckBox
+                    android:text="Internet Archive"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Subtitle" />
+
+                <CheckBox
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:enabled="false"
-                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Subtitle"
-                        android:text="Perma.cc"/>
-                </LinearLayout>
+                    android:text="WebCite"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Subtitle" />
+
+                <CheckBox
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:enabled="false"
+                    android:text="Perma.cc"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Subtitle" />
+            </LinearLayout>
 
         </LinearLayout>
 
