@@ -16,14 +16,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        ui_mockup {
-            debuggable true
-            jniDebuggable false
-            renderscriptDebuggable false
-            renderscriptOptimLevel 3
-            minifyEnabled false
-            zipAlignEnabled true
-        }
     }
 }
 

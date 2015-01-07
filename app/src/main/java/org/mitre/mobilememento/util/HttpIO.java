@@ -5,7 +5,6 @@ import android.util.Log;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -57,9 +56,9 @@ public final class HttpIO {
     }
 
     /**
-     * Determines if a resource exists on a server.
+     * Determines if a resource described by a URL is accessible to the live web.
      * @param urlToCheck URL to check
-     * @return True if the resource exists and is accessible.
+     * @return True if the resource exists and is accessible. (If HTTP request returns 200)
      */
     public static final boolean exists(String urlToCheck) {
         try {
@@ -75,6 +74,13 @@ public final class HttpIO {
         }
     }
 
+    /**
+     * Uses regex matching to get the URL of the desktop version of a given mobile site. If the
+     *
+     * @param url URL of the mobile site. If this is a
+     * @return
+     * @throws URISyntaxException
+     */
     public static final String getDesktopURL(String url) throws URISyntaxException {
 
         String modUrl = url;
