@@ -3,24 +3,17 @@ package org.mitre.mobilememento;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,11 +22,10 @@ import org.mitre.mobilememento.util.HttpIO;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 /**
  * @author wes
@@ -250,17 +242,29 @@ public class ViewArchiveActivity extends Activity implements AdapterView.OnItemC
             try {
                 List<String> domains = HttpIO.getMobileDomains(strings[0]);
                 TimeMap[] maps = new TimeMap[domains.size()];
+                ArrayList<MementoGetter> threads = new ArrayList<MementoGetter>();
+                MobileMemento.urls.clear();
+                ExecutorService threadPool = Executors.newCachedThreadPool();
 
-                for(int i=0; i<domains.size(); i++)
-                    maps[i] = TimeMap.newInstance(domains.get(i), HttpIO.getMementoHTML(domains.get(i)),
-                            (i == 0) ? ScreenType.DESKTOP : ScreenType.PHONE);
+                for (int i = 0; i < domains.size(); i++) {
+                    MementoGetter thread = new MementoGetter(domains.get(i), (i > 0) ? ScreenType.DESKTOP : ScreenType.PHONE);
+                    threads.add(thread);
+                    threadPool.execute(thread);
+                }
 
+                threadPool.shutdown();
+                threadPool.awaitTermination(10, TimeUnit.MINUTES);
+                for (int i = 0; i < threads.size(); i++) maps[i] = threads.get(i).getTimeMap();
                 return TimeMap.union(maps);
 
             } catch (URISyntaxException e) {
                 e.printStackTrace();
                 return null;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+
+            return null;
         }
 
 
@@ -281,6 +285,33 @@ public class ViewArchiveActivity extends Activity implements AdapterView.OnItemC
             Toast.makeText(ViewArchiveActivity.this, "Found " + timeMap.size() + " Mementos", Toast.LENGTH_LONG).show();
 
             if(isOutdated()) showArchiveDialog();
+        }
+
+        private class MementoGetter implements Runnable
+        {
+            private final String url;
+            private final ScreenType screenType;
+            private TimeMap myTimeMap = null;
+
+            MementoGetter(String url, ScreenType screenType)
+            {
+                this.url = url;
+                this.screenType = screenType;
+            }
+
+            @Override
+            public void run()
+            {
+                if (HttpIO.exists(url)) {
+                    myTimeMap = TimeMap.newInstance(url, HttpIO.getMementoHTML(url), screenType);
+                    MobileMemento.urls.add(url);
+                }
+            }
+
+            public TimeMap getTimeMap()
+            {
+                return myTimeMap;
+            }
         }
 
 

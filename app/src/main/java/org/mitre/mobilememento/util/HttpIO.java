@@ -17,7 +17,8 @@ import java.util.List;
  * Static class that handles all Web and HTTP operations.
  * Created by wes on 12/3/14.
  */
-public final class HttpIO {
+public final class HttpIO
+{
 
     public static final String MOBILE_REGEX[] =
             {"", "m.", "mobile.", "wap.", "touch.", "mweb."};
@@ -28,10 +29,12 @@ public final class HttpIO {
 
     /**
      * Queries the Los Alamos National Laboratory Memento server for the list of Mementos of a specific url.
+     *
      * @param urlToRead The resource URL to query the server for.
      * @return A string containing the entire document HTML text
      */
-    public static final String getMementoHTML(String urlToRead) {
+    public static final String getMementoHTML(String urlToRead)
+    {
         URL url;
         HttpURLConnection conn;
         BufferedReader rd;
@@ -39,7 +42,7 @@ public final class HttpIO {
         StringBuilder result = new StringBuilder();
         try {
             Log.d("MEMENTO_URL", urlToRead);
-            url = new URL("http://www.mementoweb.org/timemap/link/0/" + urlToRead);
+            url = new URL("http://timetravel.mementoweb.org/timemap/link/1/" + urlToRead);
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -57,15 +60,18 @@ public final class HttpIO {
 
     /**
      * Determines if a resource described by a URL is accessible to the live web.
+     *
      * @param urlToCheck URL to check
-     * @return True if the resource exists and is accessible. (If HTTP request returns 200)
+     * @return True if the resource exists and is accessible. (If HTTP request returns < 400)
      */
-    public static final boolean exists(String urlToCheck) {
+    public static final boolean exists(String urlToCheck)
+    {
         try {
-            HttpURLConnection.setFollowRedirects(false);
+            HttpURLConnection.setFollowRedirects(true);
             HttpURLConnection connection = (HttpURLConnection) new URL(urlToCheck).openConnection();
             connection.setRequestMethod("HEAD");
-            return (connection.getResponseCode() == HttpURLConnection.HTTP_OK);
+            Log.d("Response Code for " + urlToCheck, connection.getResponseCode() + "");
+            return (connection.getResponseCode() < 400);
         } catch (MalformedURLException e) {
             e.printStackTrace();
             return false;
@@ -81,24 +87,27 @@ public final class HttpIO {
      * @return
      * @throws URISyntaxException
      */
-    public static final String getDesktopURL(String url) throws URISyntaxException {
+    public static final String getDesktopURL(String url) throws URISyntaxException
+    {
 
         String modUrl = url;
 
-        for(String regex : MOBILE_REGEX) {
-            if(url.contains(regex)) modUrl = url.replace(regex, "");
+        for (String regex : MOBILE_REGEX) {
+            if (url.contains(regex)) modUrl = url.replace(regex, "");
         }
 
         return modUrl;
     }
 
-    public static final String getDomainName(String url) throws URISyntaxException {
+    public static final String getDomainName(String url) throws URISyntaxException
+    {
         URI uri = new URI(url);
         String host = uri.getHost();
         return host.startsWith("www.") ? host.substring(4) : host;
     }
 
-    public static final List<String> getMobileDomains(String url) throws URISyntaxException {
+    public static final List<String> getMobileDomains(String url) throws URISyntaxException
+    {
         Log.d("URL:", url);
         url = getDesktopURL(url);
         Log.d("URL:", url);
@@ -106,24 +115,21 @@ public final class HttpIO {
 
         List<String> domains = new ArrayList<String>();
 
-        for(String regex : MOBILE_REGEX) {
+        for (String regex : MOBILE_REGEX) {
 
             String wwwRegeces[];
-            if(url.contains("https://")) wwwRegeces = WWW_REGEX[1];
+            if (url.contains("https://")) wwwRegeces = WWW_REGEX[1];
             else wwwRegeces = WWW_REGEX[0];
 
-            for(String wwwRegex : wwwRegeces) {
+            for (String wwwRegex : wwwRegeces) {
                 String modDomain = regex + domain;
                 String[] split = url.split(domain);
                 String modURL = wwwRegex + modDomain + split[1];
-                if(exists(modURL)) {
-                    domains.add(modURL);
-                    Log.d("ModUrl", modURL + "Exists!");
-                }
-                else Log.d("ModUrl", modURL + "Does not exist");
+                domains.add(modURL);
             }
         }
 
         return domains;
     }
+
 }

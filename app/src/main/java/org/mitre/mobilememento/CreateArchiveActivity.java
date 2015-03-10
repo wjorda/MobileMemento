@@ -1,16 +1,17 @@
 package org.mitre.mobilememento;
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CheckBox;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Allows the user to create and upload archives of the provided web page.
@@ -19,8 +20,8 @@ import android.view.MenuItem;
  */
 public class CreateArchiveActivity extends Activity {
 
-    private static final String ARCHIVE_TODAY = "http://archive.today/?run=1&url=*";
-    private static final String WEB_ARCHIVE = "https://web.archive.org/save/*";
+    private static final String ARCHIVE_TODAY = "http://archive.today/?run=1&url=";
+    private static final String WEB_ARCHIVE = "https://web.archive.org/save/";
 
     /**
      * Shows a dialog that this is a test page and redirects the user back to a web browser in order
@@ -50,6 +51,47 @@ public class CreateArchiveActivity extends Activity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void submit(View v)
+    {
+        ExecutorService threadPool = Executors.newCachedThreadPool();
+        CheckBox archiveToday = (CheckBox) findViewById(R.id.archiveToday);
+        CheckBox webArchive = (CheckBox) findViewById(R.id.webArchive);
+
+        for (String url : MobileMemento.urls) {
+            if (archiveToday.isChecked())
+                threadPool.execute(new SubmitToArchiveThread(WEB_ARCHIVE + url));
+            if (webArchive.isChecked())
+                threadPool.execute(new SubmitToArchiveThread(ARCHIVE_TODAY + url));
+        }
+
+        threadPool.shutdown();
+        finish();
+    }
+
+    private class SubmitToArchiveThread implements Runnable
+    {
+        private final String url;
+
+        SubmitToArchiveThread(String url)
+        {
+            this.url = url;
+        }
+
+        @Override
+        public void run()
+        {
+            try {
+                HttpURLConnection.setFollowRedirects(true);
+                HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+                connection.setRequestMethod("HEAD");
+                Log.d("Request", connection.getResponseCode() + "");
+            } catch (Exception e) {
+                Log.e("Exception", "", e);
+            }
+            Log.d("Finished Upload", url);
+        }
     }
 
 }
