@@ -21,6 +21,7 @@
             android:id="@+id/labelTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
             android:maxLines="3"
             android:padding="8dp"
             android:text="@string/lorem_ipsum"
@@ -46,6 +47,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:maxLines="3"
                 android:padding="8dp"

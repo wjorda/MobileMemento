@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:baselineAligned="false">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:baselineAligned="false"
+              android:orientation="horizontal">
 
     <ImageView
+        android:id="@+id/screenBadge"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:id="@+id/screenBadge"
-        android:src="@drawable/badge_desktop"
-        android:layout_margin="8dp" />
+        android:layout_margin="8dp"
+        android:src="@drawable/badge_desktop"/>
 
     <TextView
+        android:id="@+id/element_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="23:30 GMT"
-        android:id="@+id/element_title"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.SearchResult.Title"
         android:layout_gravity="center"
-        android:layout_margin="8dp" />
+        android:layout_margin="8dp"
+        android:fontFamily="sans-serif medium"
+        android:text="23:30 GMT"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionMode.Title"/>
 </LinearLayout>

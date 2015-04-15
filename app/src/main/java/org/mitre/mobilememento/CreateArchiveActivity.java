@@ -1,7 +1,7 @@
 package org.mitre.mobilememento;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +18,8 @@ import java.util.concurrent.Executors;
  *
  * @author wes
  */
-public class CreateArchiveActivity extends Activity {
+public class CreateArchiveActivity extends ActionBarActivity
+{
 
     private static final String ARCHIVE_TODAY = "http://archive.today/?run=1&url=";
     private static final String WEB_ARCHIVE = "https://web.archive.org/save/";
@@ -82,10 +83,11 @@ public class CreateArchiveActivity extends Activity {
         @Override
         public void run()
         {
+            HttpURLConnection connection = null;
             try {
                 HttpURLConnection.setFollowRedirects(true);
-                HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-                connection.setRequestMethod("HEAD");
+                connection = (HttpURLConnection) new URL(url).openConnection();
+                connection.setRequestMethod("GET");
                 Log.d("Request", connection.getResponseCode() + "");
             } catch (Exception e) {
                 Log.e("Exception", "", e);

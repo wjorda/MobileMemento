@@ -1,7 +1,5 @@
 package org.mitre.mobilememento;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -9,6 +7,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,7 +32,9 @@ import java.util.concurrent.TimeUnit;
  *
  * An Activity that provides a display for the TimeMap resultant from this web page.
  */
-public class ViewArchiveActivity extends Activity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+public class ViewArchiveActivity extends ActionBarActivity implements AdapterView.OnItemClickListener,
+        AdapterView.OnItemLongClickListener
+{
 
     public static final long OUTDATED_INTERVAL_DAYS = 14;
 
@@ -109,8 +111,8 @@ public class ViewArchiveActivity extends Activity implements AdapterView.OnItemC
             }
         });
 
-        ActionBar actionBar = getActionBar();
-        actionBar.setTitle("MobileMemento");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("MobileMink");
     }
 
     public TimeMap getTimeMap() { return timeMap; }
