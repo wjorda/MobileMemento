@@ -1,9 +1,6 @@
 package org.mitre.mobilememento;
 
-import android.annotation.TargetApi;
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.support.annotation.DrawableRes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,33 +18,42 @@ public enum ScreenType {
     public static final String DPI_KEY = "DPI_KEY";
 
     private final String name;
-    private final int badgeDrawable;
+    private final
+    @DrawableRes
+    int badgeDrawable;
 
     private ScreenType(String name, int resId) {
         this.name = name;
         this.badgeDrawable = resId;
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
-
-    public String getName() { return name; }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public Drawable makeDrawable(Context context) {
-        return context.getDrawable(badgeDrawable);
-    }
-
-    public static ArrayList<Map<String, ScreenType>> getBuckets() {
+    public static ArrayList<Map<String, ScreenType>> getBuckets()
+    {
         ArrayList<Map<String, ScreenType>> buckets = new ArrayList<Map<String, ScreenType>>();
-        for(ScreenType t : values()) {
+        for (ScreenType t : values()) {
             Map<String, ScreenType> map = new HashMap<String, ScreenType>();
             map.put(DPI_KEY, t);
             buckets.add(map);
         }
 
         return buckets;
+    }
+
+    @Override
+    public String toString()
+    {
+        return name;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public
+    @DrawableRes
+    int getBadgeDrawable()
+    {
+        return badgeDrawable;
     }
 }

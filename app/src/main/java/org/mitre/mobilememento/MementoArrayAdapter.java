@@ -62,7 +62,7 @@ public class MementoArrayAdapter extends BaseAdapter {
         //Log.d("AchiveSelectDialog", "E");
 
         ((TextView) v.findViewById(R.id.element_title)).setText(memento.getTime(DateFormat.getDateFormat(context)));
-        ((ImageView) v.findViewById(R.id.screenBadge)).setImageDrawable(memento.getScreenType().makeDrawable(context));
+        ((ImageView) v.findViewById(R.id.screenBadge)).setImageResource(memento.getScreenType().getBadgeDrawable());
 
         //Log.d("AchiveSelectDialog", "F");
 
