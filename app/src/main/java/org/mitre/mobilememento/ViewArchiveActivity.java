@@ -226,7 +226,7 @@ public class ViewArchiveActivity extends ActionBarActivity implements AdapterVie
         protected void onPreExecute() {
             //Show this while content loads
             dialog = ProgressDialog.show(ViewArchiveActivity.this, "Fetching Mementos...",
-                    "Loading archived versions of this site...");
+                    "Loading Mementos for this site... (This may take a few minutes)");
             dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -249,7 +249,7 @@ public class ViewArchiveActivity extends ActionBarActivity implements AdapterVie
                 ExecutorService threadPool = Executors.newCachedThreadPool();
 
                 for (int i = 0; i < domains.size(); i++) {
-                    MementoGetter thread = new MementoGetter(domains.get(i), (i > 0) ? ScreenType.DESKTOP : ScreenType.PHONE);
+                    MementoGetter thread = new MementoGetter(domains.get(i), (i < 2) ? ScreenType.DESKTOP : ScreenType.PHONE);
                     threads.add(thread);
                     threadPool.execute(thread);
                 }

@@ -5,7 +5,6 @@ package org.mitre.mobilememento;
  */
 
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -23,7 +22,7 @@ public class MementoArrayAdapter extends BaseAdapter {
     private ViewArchiveActivity context;
 
     public MementoArrayAdapter(ViewArchiveActivity context) {
-        Log.d("AchiveSelectDialog", "C");
+        //Log.d("AchiveSelectDialog", "C");
         this.context = context;
 
         if(context.getTimeMap() != null) mementos = context.getTimeMap().getMementos();
@@ -52,7 +51,7 @@ public class MementoArrayAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View oldView, ViewGroup viewGroup) {
-        Log.d("AchiveSelectDialog", "D");
+        //Log.d("AchiveSelectDialog", "D");
         Memento memento = mementos.get(i);
 
         View v = oldView;
@@ -60,12 +59,12 @@ public class MementoArrayAdapter extends BaseAdapter {
             v = View.inflate(context, R.layout.archive_list_element, null);
         }
 
-        Log.d("AchiveSelectDialog", "E");
+        //Log.d("AchiveSelectDialog", "E");
 
         ((TextView) v.findViewById(R.id.element_title)).setText(memento.getTime(DateFormat.getDateFormat(context)));
         ((ImageView) v.findViewById(R.id.screenBadge)).setImageDrawable(memento.getScreenType().makeDrawable(context));
 
-        Log.d("AchiveSelectDialog", "F");
+        //Log.d("AchiveSelectDialog", "F");
 
         return v;
     }

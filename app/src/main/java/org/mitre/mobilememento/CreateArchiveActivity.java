@@ -61,9 +61,9 @@ public class CreateArchiveActivity extends ActionBarActivity
         CheckBox webArchive = (CheckBox) findViewById(R.id.webArchive);
 
         for (String url : MobileMemento.urls) {
-            if (archiveToday.isChecked())
-                threadPool.execute(new SubmitToArchiveThread(WEB_ARCHIVE + url));
             if (webArchive.isChecked())
+                threadPool.execute(new SubmitToArchiveThread(WEB_ARCHIVE + url));
+            if (archiveToday.isChecked())
                 threadPool.execute(new SubmitToArchiveThread(ARCHIVE_TODAY + url));
         }
 

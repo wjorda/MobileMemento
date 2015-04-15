@@ -105,6 +105,7 @@ public class TimeMap implements Comparator<Memento> {
      */
     public Date mostRecent()
     {
+        if (mementos.size() <= 0) return new Date(0);
         Collections.sort(mementos, this);
         return mementos.get(0).getDate();
     }
