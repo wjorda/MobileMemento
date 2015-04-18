@@ -16,7 +16,7 @@ public class TimeMap implements Comparator<Memento> {
 
     private static final long cutoff = new Date(98, 0, 1, 12, 1, 32).getTime();
     private final ScreenType screenType;
-    private final String contentUrl;
+    private String contentUrl;
     private ArrayList<Memento> mementos = new ArrayList<Memento>();
 
     /**
@@ -29,8 +29,10 @@ public class TimeMap implements Comparator<Memento> {
 
     private TimeMap(TimeMap... others) {
         this.screenType = ScreenType.DESKTOP;
-        this.contentUrl = others[0].contentUrl;
-        for (TimeMap map : others) if (map != null) mementos.addAll(map.getMementos());
+        if (others.length != 0) {
+            this.contentUrl = others[0].contentUrl;
+            for (TimeMap map : others) if (map != null) mementos.addAll(map.getMementos());
+        }
     }
 
     public static TimeMap newInstance(String contentURL, String httpResult, ScreenType screenType) {

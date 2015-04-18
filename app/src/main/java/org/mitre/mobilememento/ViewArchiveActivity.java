@@ -2,6 +2,7 @@ package org.mitre.mobilememento;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -180,7 +182,11 @@ public class ViewArchiveActivity extends ActionBarActivity implements AdapterVie
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(selected.getArchiveUrl()));
 
-        startActivity(intent);
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException r) {
+            Toast.makeText(this, "No Activity found to handle Intent!", Toast.LENGTH_LONG);
+        }
         //finish();
     }
 
@@ -304,6 +310,7 @@ public class ViewArchiveActivity extends ActionBarActivity implements AdapterVie
             @Override
             public void run()
             {
+                Log.d("URL", url);
                 if (HttpIO.exists(url)) {
                     myTimeMap = TimeMap.newInstance(url, HttpIO.getMementoHTML(url), screenType);
                     MobileMemento.urls.add(url);
