@@ -42,7 +42,7 @@ public final class HttpIO
         StringBuilder result = new StringBuilder();
         try {
             Log.d("MEMENTO_URL", urlToRead);
-            url = new URL("http://timetravel.mementoweb.org/timemap/link/1/" + urlToRead);
+            url = new URL("http://mementoproxy.cs.odu.edu/aggr/timemap/link/1/" + urlToRead);
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
