@@ -30,7 +30,7 @@ public class TimeMap implements Comparator<Memento> {
     private TimeMap(TimeMap... others) {
         this.screenType = ScreenType.DESKTOP;
         if (others.length != 0) {
-            this.contentUrl = others[0].contentUrl;
+            if(others[0] != null)   this.contentUrl = others[0].contentUrl; // Prevent accessor to invalid TM object
             for (TimeMap map : others) if (map != null) mementos.addAll(map.getMementos());
         }
     }
