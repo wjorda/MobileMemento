@@ -6,6 +6,8 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_create_archive">This is a Test!</string>
 
+    <string name="app_version">0.5.2</string>
+
     <string-array name="dummyContent">
         <item>8:02 GMT</item>
         <item>12:42 GMT</item>
@@ -30,6 +32,7 @@
         <item>2012</item>
         <item>2013</item>
         <item>2014</item>
+        <item>2015</item>
     </string-array>
     <string-array name="months">
         <item>January</item>
