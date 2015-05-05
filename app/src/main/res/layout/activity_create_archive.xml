@@ -28,7 +28,7 @@
                 android:gravity="center"
                 android:maxLines="3"
                 android:padding="8dp"
-                android:text="Submit for archiving at:"
+                android:text="@string/submit_for_archiving_at"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title"/>
 
             <LinearLayout
@@ -41,28 +41,28 @@
                     android:id="@+id/archiveToday"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:text="Archive.today"
+                    android:text="@string/archive_is"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Subtitle"/>
 
                 <CheckBox
                     android:id="@+id/webArchive"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:text="Internet Archive"
+                    android:text="@string/internet_archive"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Subtitle"/>
 
                 <CheckBox
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:enabled="false"
-                    android:text="WebCite"
+                    android:text="@string/web_cite"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Subtitle"/>
 
                 <CheckBox
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:enabled="false"
-                    android:text="Perma.cc"
+                    android:text="@string/perma_cc"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Subtitle"/>
             </LinearLayout>
 
@@ -77,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="submit"
-                android:text="SUBMIT"/>
+                android:text="@string/submit"/>
 
         </LinearLayout>
 

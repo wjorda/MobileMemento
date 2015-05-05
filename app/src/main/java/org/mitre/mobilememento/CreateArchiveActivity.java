@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.ExecutorService;
@@ -21,7 +22,7 @@ import java.util.concurrent.Executors;
 public class CreateArchiveActivity extends ActionBarActivity
 {
 
-    private static final String ARCHIVE_TODAY = "http://archive.today/?run=1&url=";
+    private static final String ARCHIVE_TODAY = "http://archive.today/submit/";
     private static final String WEB_ARCHIVE = "https://web.archive.org/save/";
 
     /**
@@ -62,22 +63,22 @@ public class CreateArchiveActivity extends ActionBarActivity
 
         for (String url : MobileMemento.urls) {
             if (webArchive.isChecked())
-                threadPool.execute(new SubmitToArchiveThread(WEB_ARCHIVE + url));
+                threadPool.execute(new SubmitToInternetArchiveThread(url));
             if (archiveToday.isChecked())
-                threadPool.execute(new SubmitToArchiveThread(ARCHIVE_TODAY + url));
+                threadPool.execute(new SubmitToArchiveTodayThread(url));
         }
 
         threadPool.shutdown();
         finish();
     }
 
-    private class SubmitToArchiveThread implements Runnable
+    private class SubmitToInternetArchiveThread implements Runnable
     {
         private final String url;
 
-        SubmitToArchiveThread(String url)
+        SubmitToInternetArchiveThread(String url)
         {
-            this.url = url;
+            this.url = WEB_ARCHIVE + url;
         }
 
         @Override
@@ -88,12 +89,48 @@ public class CreateArchiveActivity extends ActionBarActivity
                 HttpURLConnection.setFollowRedirects(true);
                 connection = (HttpURLConnection) new URL(url).openConnection();
                 connection.setRequestMethod("GET");
-                Log.d("Request", connection.getResponseCode() + "");
+                //Toast.makeText(CreateArchiveActivity.this, "Upload finished.", Toast.LENGTH_SHORT).show();
+                Log.d("Request", connection.getResponseCode() + " " + url);
             } catch (Exception e) {
                 Log.e("Exception", "", e);
+                //Toast.makeText(CreateArchiveActivity.this, "Upload failed!", Toast.LENGTH_SHORT).show();
             }
-            Log.d("Finished Upload", url);
+
         }
     }
+
+    private class SubmitToArchiveTodayThread implements Runnable
+    {
+        private final String url;
+
+        SubmitToArchiveTodayThread(String url)
+        {
+            this.url = url;
+        }
+
+        @Override
+        public void run()
+        {
+            HttpURLConnection connection = null;
+            try {
+                HttpURLConnection.setFollowRedirects(true);
+                connection = (HttpURLConnection) new URL(ARCHIVE_TODAY).openConnection();
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+
+                OutputStream out = connection.getOutputStream();
+                out.write(("url=" + url).getBytes());
+                out.flush();
+                out.close();
+                //Toast.makeText(CreateArchiveActivity.this, "Upload finished.", Toast.LENGTH_SHORT).show();
+                Log.d("Request", connection.getResponseCode() + " " + ARCHIVE_TODAY + url);
+            } catch (Exception e) {
+                Log.e("Exception", "", e);
+                //Toast.makeText(CreateArchiveActivity.this, "Upload failed!", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+    }
+
 
 }
