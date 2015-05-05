@@ -1,5 +1,6 @@
 package org.mitre.mobilememento;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -13,6 +14,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Allows the user to create and upload archives of the provided web page.
@@ -57,7 +59,7 @@ public class CreateArchiveActivity extends ActionBarActivity
 
     public void submit(View v)
     {
-        ExecutorService threadPool = Executors.newCachedThreadPool();
+        final ExecutorService threadPool = Executors.newCachedThreadPool();
         CheckBox archiveToday = (CheckBox) findViewById(R.id.archiveToday);
         CheckBox webArchive = (CheckBox) findViewById(R.id.webArchive);
 
@@ -69,7 +71,26 @@ public class CreateArchiveActivity extends ActionBarActivity
         }
 
         threadPool.shutdown();
-        finish();
+
+        final ProgressDialog loaderWheel = new ProgressDialog(this);
+        loaderWheel.setTitle("Uploading pages to archives...");
+        loaderWheel.setMessage("Uploading snapshots to severs. (This should take a few seconds)");
+        loaderWheel.show();
+
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                try {
+                    threadPool.awaitTermination(5, TimeUnit.MINUTES);
+                    loaderWheel.dismiss();
+                    CreateArchiveActivity.this.finish();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     private class SubmitToInternetArchiveThread implements Runnable
